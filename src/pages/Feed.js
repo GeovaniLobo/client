@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../api';  // ajuste o caminho conforme a sua estrutura
+import { API_BASE_URL } from '../api';
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
