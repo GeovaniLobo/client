@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { API_BASE_URL } from '../api';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ export default function Register() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+      await axios.post(`${API_BASE_URL}/api/auth/register`, { name, email, password });
       alert('Cadastro realizado com sucesso!');
       navigate('/');
     } catch (err) {
