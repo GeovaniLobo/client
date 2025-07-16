@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../api';  // ajuste o caminho conforme a sua estrutura
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
@@ -7,7 +8,7 @@ export default function Feed() {
   useEffect(() => {
     const fetchPosts = async () => {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/posts', {
+      const res = await axios.get(`${API_BASE_URL}/api/posts`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPosts(res.data);
