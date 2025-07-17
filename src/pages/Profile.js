@@ -10,10 +10,14 @@ export default function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`${API_BASE_URL}/api/users/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setProfile(res.data);
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/users/${id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setProfile(res.data);
+      } catch (err) {
+        console.error('Erro ao carregar perfil', err);
+      }
     };
     fetchProfile();
   }, [id]);
