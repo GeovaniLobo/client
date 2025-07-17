@@ -8,10 +8,14 @@ export default function Feed() {
   useEffect(() => {
     const fetchPosts = async () => {
       const token = localStorage.getItem('token');
-      const res = await axios.get(`${API_BASE_URL}/api/posts`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setPosts(res.data);
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/posts`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setPosts(res.data);
+      } catch (err) {
+        console.error('Erro ao carregar posts', err);
+      }
     };
     fetchPosts();
   }, []);
